@@ -6,43 +6,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Symmetric 3D Cube</title>
     <style>
-        /* 重置默认样式 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* 立方体容器 */
        .cube-container {
-            width: 200px;
-            height: 200px;
+            width: 300px;
+            height: 300px;
             margin: 100px auto;
-            perspective: 800px;
+            perspective: 1000px;
             transform-style: preserve-3d;
             position: relative;
         }
 
-        /* 立方体的面 */
        .face {
             position: absolute;
             width: 100px;
             height: 100px;
+            transition: transform 0.5s ease;
         }
 
-        /* 正面 */
        .front-face {
             background-color: green;
-            transform: rotateY(0deg) translateZ(50px);
+            transform: rotateX(0deg) rotateY(0deg) translateZ(50px);
         }
 
-        /* 顶面 */
        .top-face {
             background-color: red;
             transform: rotateX(-60deg) rotateY(30deg) translateZ(50px);
         }
 
-        /* 侧面 */
        .side-face {
             background-color: purple;
             transform: rotateY(-120deg) translateZ(50px);
