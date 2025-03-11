@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Cube</title>
+    <style>
+        /* 容器 */
+       .cube-container {
+            perspective: 800px;
+            width: 200px;
+            height: 200px;
+            margin: 50px auto;
+        }
+
+        /* 立方体的面 */
+       .cube-face {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+        }
+
+        /* 红色顶面 */
+       .top-face {
+            background-color: red;
+            transform: rotateX(90deg) translateZ(50px);
+        }
+
+        /* 绿色正面 */
+       .front-face {
+            background-color: green;
+            transform: translateZ(50px);
+        }
+
+        /* 紫色侧面 */
+       .side-face {
+            background-color: purple;
+            transform: rotateY(-90deg) translateZ(50px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cube-container">
+        <div class="cube-face top-face"></div>
+        <div class="cube-face front-face"></div>
+        <div class="cube-face side-face"></div>
+    </div>
+</body>
+
+</html>
