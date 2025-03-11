@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>120 - Degree Symmetric Cube</title>
+    <title>3D Cube</title>
     <style>
         * {
             margin: 0;
@@ -13,8 +13,8 @@
         }
 
        .cube-container {
-            width: 300px;
-            height: 300px;
+            width: 200px;
+            height: 200px;
             margin: 100px auto;
             perspective: 1000px;
             transform-style: preserve-3d;
@@ -27,22 +27,22 @@
             height: 100px;
         }
 
-        /* 顶面（红色） */
+        /* 红色顶面 */
        .top-face {
-            background-color: red;
-            transform: rotateX(-54.74deg) rotateY(35.26deg) translateZ(50px);
+            background-color: #ff5500; /* 橙色，接近图中红色的显示效果 */
+            transform: rotateX(-45deg) rotateY(45deg) translateZ(50px);
         }
 
-        /* 正面（绿色） */
+        /* 绿色正面 */
        .front-face {
-            background-color: green;
-            transform: rotateX(0deg) rotateY(0deg) translateZ(50px);
+            background-color: #008000; /* 绿色 */
+            transform: translateZ(50px);
         }
 
-        /* 侧面（黄色） */
+        /* 紫色侧面 */
        .side-face {
-            background-color: yellow;
-            transform: rotateX(-54.74deg) rotateY(-84.74deg) translateZ(50px);
+            background-color: #800080; /* 紫色 */
+            transform: rotateY(-90deg) translateZ(50px);
         }
     </style>
 </head>
