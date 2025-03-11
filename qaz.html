@@ -4,50 +4,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Cube</title>
+    <title>Symmetric 3D Cube</title>
     <style>
+        /* 重置默认样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 立方体容器 */
        .cube-container {
-            perspective: 200px;
             width: 200px;
             height: 200px;
-            margin: 200px auto;
+            margin: 100px auto;
+            perspective: 800px;
+            transform-style: preserve-3d;
             position: relative;
         }
 
-       .cube-face {
+        /* 立方体的面 */
+       .face {
             position: absolute;
-            width: 200px;
-            height: 200px;
+            width: 100px;
+            height: 100px;
         }
 
-        /* 红色顶面 */
-       .top-face {
-            background-color: red;
-            transform: rotateX(85deg) translateZ(50px);
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        /* 绿色正面 */
+        /* 正面 */
        .front-face {
             background-color: green;
-            transform: rotateX(85deg) translateZ(50px);
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            transform: rotateY(0deg) translateZ(50px);
         }
 
-        /* 紫色侧面 */
+        /* 顶面 */
+       .top-face {
+            background-color: red;
+            transform: rotateX(-60deg) rotateY(30deg) translateZ(50px);
+        }
+
+        /* 侧面 */
        .side-face {
-            background-color: #800080;
-            transform: rotateY(85deg) translateZ(50px);
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            background-color: purple;
+            transform: rotateY(-120deg) translateZ(50px);
         }
     </style>
 </head>
 
 <body>
     <div class="cube-container">
-        <div class="cube-face top-face"></div>
-        <div class="cube-face front-face"></div>
-        <div class="cube-face side-face"></div>
+        <div class="face front-face"></div>
+        <div class="face top-face"></div>
+        <div class="face side-face"></div>
     </div>
 </body>
 
