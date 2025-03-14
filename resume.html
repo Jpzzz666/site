@@ -1,71 +1,95 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="UTF-8">
-    <title>个人简历 - CSS Grid 版</title>
+    <title>Lab42 作业整合</title>
     <style>
-        /* 重置默认样式 */
+        /* 椭圆动画样式 */
+       .animated-ellipse {
+            width: 200px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 50px auto;
+            background: linear-gradient(to right, #6a5acd, #8a2be2);
+            /* 将动画时间从 5s 调整为 3s，加快动画速度 */
+            animation: blue-purple-gradient 3s linear infinite;
+        }
+        @keyframes blue-purple-gradient {
+            0% {
+                background: linear-gradient(to right, #6a5acd, #8a2be2);
+            }
+            12.5% {
+                background: linear-gradient(to right, #6355c4, #8e31e5);
+            }
+            25% {
+                background: linear-gradient(to right, #5b4cac, #9236e2);
+            }
+            37.5% {
+                background: linear-gradient(to right, #534394, #963be0);
+            }
+            50% {
+                background: linear-gradient(to right, #483d8b, #9400d3);
+            }
+            62.5% {
+                background: linear-gradient(to right, #534394, #963be0);
+            }
+            75% {
+                background: linear-gradient(to right, #5b4cac, #9236e2);
+            }
+            87.5% {
+                background: linear-gradient(to right, #6355c4, #8e31e5);
+            }
+            100% {
+                background: linear-gradient(to right, #6a5acd, #8a2be2);
+            }
+        }
+
+        /* 简历 CSS Grid 样式 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: Arial, sans-serif;
         }
-
-        /* 简历容器，设置为网格布局 */
-        .resume-container {
+       .resume-container {
             display: grid;
             grid-template-columns: 1fr 2fr;
             gap: 20px;
             padding: 20px;
         }
-
-        /* 标题样式 */
-        .resume-title {
+       .resume-title {
             grid-column: 1 / -1;
             text-align: center;
             margin-bottom: 30px;
         }
-
-        /* 基本信息模块 */
-        .basic-info {
+       .basic-info {
             background: #f5f5f5;
             padding: 15px;
             border: 1px solid #ddd;
         }
-
-        .info-item {
+       .info-item {
             margin-bottom: 10px;
             display: flex;
             gap: 10px;
         }
-
-        /* 工作经历模块 */
-        .work-experience {
+       .work-experience {
             background: #f5f5f5;
             padding: 15px;
             border: 1px solid #ddd;
         }
-
-        .work-experience h2 {
+       .work-experience h2 {
             margin-bottom: 15px;
         }
-
-        .experience-item {
+       .experience-item {
             margin-bottom: 15px;
         }
-
-        /* 教育经历、社会关系、自我评价模块 */
-        .education-experience,
-        .social-relationship,
-        .self-evaluation {
+       .education-experience,
+       .social-relationship,
+       .self-evaluation {
             background: #f5f5f5;
             padding: 15px;
             border: 1px solid #ddd;
         }
-
-        /* 头像样式 */
        .avatar-img {
             width: 100px;
             height: 100px;
@@ -74,12 +98,13 @@
         }
     </style>
 </head>
-
 <body>
+    <!-- 椭圆部分 -->
+    <div class="animated-ellipse"></div>
+
+    <!-- 简历部分 -->
     <div class="resume-container">
         <h1 class="resume-title">个人简历</h1>
-
-        <!-- 左侧内容：基本信息、教育经历等 -->
         <div class="left-section">
             <div class="basic-info">
                 <div class="info-item">姓名：简小珊</div>
@@ -93,26 +118,21 @@
                 <div class="info-item">电话：135-0000-0000</div>
                 <div class="info-item">婚姻状况：已婚</div>
             </div>
-
             <div class="education-experience">
                 <h2>教育经历</h2>
                 <p>中专学历（本人学历不高，正在读成人高考）</p>
             </div>
-
             <div class="social-relationship">
                 <h2>社会关系</h2>
                 <p>家人从事教育行业老师和学校领导工作。</p>
                 <p>本人对象与很多老板是朋友关系，具有一定的社会关系。</p>
             </div>
         </div>
-
-        <!-- 右侧内容：求职意向、工作经历、自我评价 -->
         <div class="right-section">
             <div class="job-intention">
                 <h2>求职意向</h2>
                 <p>区域经理</p>
             </div>
-
             <div class="work-experience">
                 <h2>工作经历</h2>
                 <div class="experience-item">
@@ -135,7 +155,6 @@
                     </ul>
                 </div>
             </div>
-
             <div class="self-evaluation">
                 <h2>自我评价</h2>
                 <ul>
@@ -149,5 +168,5 @@
         </div>
     </div>
 </body>
-
 </html>    
+
