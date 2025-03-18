@@ -1,0 +1,27 @@
+<<!DOCTYPE html>  
+<html>  
+<body>  
+<script>  
+// 步骤1：通过prompt获取a、b、c  
+let a = prompt('Enter coefficient a');  
+let b = prompt('Enter coefficient b');  
+let c = prompt('Enter coefficient c');  
+
+// 步骤2：转换为数字  
+a = parseFloat(a);  
+b = parseFloat(b);  
+c = parseFloat(c);  
+
+// 步骤3：计算delta  
+let delta = b * b - 4 * a * c;  
+
+// 步骤4：计算x1和x2  
+let x1 = (-b + Math.sqrt(delta)) / (2 * a);  
+let x2 = (-b - Math.sqrt(delta)) / (2 * a);  
+
+// 步骤5-6：通过alert和console.log输出结果  
+alert(`Solution: x1 = ${x1}, x2 = ${x2}`);  
+console.log(`Solution: x1 = ${x1}, x2 = ${x2}`);  
+</script>  
+</body>  
+</html>  
