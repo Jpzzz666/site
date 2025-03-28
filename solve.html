@@ -1,27 +1,43 @@
-<<!DOCTYPE html>  
+<!DOCTYPE html>  
 <html>  
+<head>  
+    <title>二次方程求解</title>  
+</head>  
 <body>  
-<script>  
-// 步骤1：通过prompt获取a、b、c  
-let a = prompt('Enter coefficient a');  
-let b = prompt('Enter coefficient b');  
-let c = prompt('Enter coefficient c');  
+    <!-- 按题目格式设计界面 -->  
+    <input type="number" id="a" style="width: 50px;">x² +  
+    <input type="number" id="b" style="width: 50px;">x +  
+    <input type="number" id="c" style="width: 50px;"> = 0  
+    <button onclick="solveEquation()">Solve</button>  
+    <div id="solutionArea">Solution area</div>  
 
-// 步骤2：转换为数字  
-a = parseFloat(a);  
-b = parseFloat(b);  
-c = parseFloat(c);  
+    <script>  
+        function solveEquation() {  
+            const a = parseFloat(document.getElementById('a').value);  
+            const b = parseFloat(document.getElementById('b').value);  
+            const c = parseFloat(document.getElementById('c').value);  
+            const solutionArea = document.getElementById('solutionArea');  
 
-// 步骤3：计算delta  
-let delta = b * b - 4 * a * c;  
+            if (a === 0) {  
+                solutionArea.textContent = "Error: a cannot be 0 (not a quadratic equation)";  
+                return;  
+            }  
 
-// 步骤4：计算x1和x2  
-let x1 = (-b + Math.sqrt(delta)) / (2 * a);  
-let x2 = (-b - Math.sqrt(delta)) / (2 * a);  
+            const discriminant = b * b - 4 * a * c;  
 
-// 步骤5-6：通过alert和console.log输出结果  
-alert(`Solution: x1 = ${x1}, x2 = ${x2}`);  
-console.log(`Solution: x1 = ${x1}, x2 = ${x2}`);  
-</script>  
+            if (discriminant > 0) {  
+                const x1 = (-b + Math.sqrt(discriminant)) / (2 * a);  
+                const x2 = (-b - Math.sqrt(discriminant)) / (2 * a);  
+                solutionArea.textContent = `x1=${x1.toFixed(2)}, x2=${x2.toFixed(2)}`;  
+            } else if (discriminant === 0) {  
+                const x = -b / (2 * a);  
+                solutionArea.textContent = `x = ${x.toFixed(2)}`;  
+            } else {  
+                const realPart = -b / (2 * a);  
+                const imagPart = Math.sqrt(-discriminant) / (2 * a);  
+                solutionArea.textContent = `x1=${realPart.toFixed(2)}+${imagPart.toFixed(2)}i, x2=${realPart.toFixed(2)}-${imagPart.toFixed(2)}i`;  
+            }  
+        }  
+    </script>  
 </body>  
 </html>  
