@@ -4,45 +4,38 @@
     <title>二次方程求解</title>  
 </head>  
 <body>  
-    <!-- 输入界面 -->  
-    <input type="number" id="a" placeholder="输入a（二次项系数）">x² +  
-    <input type="number" id="b" placeholder="输入b（一次项系数）">x +  
-    <input type="number" id="c" placeholder="输入c（常数项）"> = 0  
-    <button onclick="solveQuadratic()">求解</button>  
-    <div id="result">解的结果显示区域</div>  
+    <!-- 按题目格式设计界面 -->  
+    <input type="number" id="a" style="width: 50px;">x² +  
+    <input type="number" id="b" style="width: 50px;">x +  
+    <input type="number" id="c" style="width: 50px;"> = 0  
+    <button onclick="solveEquation()">Solve</button>  
+    <div id="solutionArea">Solution area</div>  
 
     <script>  
-        function solveQuadratic() {  
-            // 获取输入值  
+        function solveEquation() {  
             const a = parseFloat(document.getElementById('a').value);  
             const b = parseFloat(document.getElementById('b').value);  
             const c = parseFloat(document.getElementById('c').value);  
-            const resultDiv = document.getElementById('result');  
+            const solutionArea = document.getElementById('solutionArea');  
 
-            // 检查a是否为0（非二次方程）  
             if (a === 0) {  
-                resultDiv.textContent = "错误：a不能为0，这不是二次方程！";  
+                solutionArea.textContent = "Error: a cannot be 0 (not a quadratic equation)";  
                 return;  
             }  
 
-            // 计算判别式  
             const discriminant = b * b - 4 * a * c;  
 
-            // 根据判别式处理不同情况  
             if (discriminant > 0) {  
-                // 两个不同实根  
                 const x1 = (-b + Math.sqrt(discriminant)) / (2 * a);  
                 const x2 = (-b - Math.sqrt(discriminant)) / (2 * a);  
-                resultDiv.textContent = `方程有两个实根：x₁ = ${x1.toFixed(2)}，x₂ = ${x2.toFixed(2)}`;  
+                solutionArea.textContent = `x1=${x1.toFixed(2)}, x2=${x2.toFixed(2)}`;  
             } else if (discriminant === 0) {  
-                // 唯一实根  
                 const x = -b / (2 * a);  
-                resultDiv.textContent = `方程有唯一实根：x = ${x.toFixed(2)}`;  
+                solutionArea.textContent = `x = ${x.toFixed(2)}`;  
             } else {  
-                // 复数根  
                 const realPart = -b / (2 * a);  
                 const imagPart = Math.sqrt(-discriminant) / (2 * a);  
-                resultDiv.textContent = `方程有复数根：x₁ = ${realPart.toFixed(2)} + ${imagPart.toFixed(2)}i，x₂ = ${realPart.toFixed(2)} - ${imagPart.toFixed(2)}i`;  
+                solutionArea.textContent = `x1=${realPart.toFixed(2)}+${imagPart.toFixed(2)}i, x2=${realPart.toFixed(2)}-${imagPart.toFixed(2)}i`;  
             }  
         }  
     </script>  
