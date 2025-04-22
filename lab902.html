@@ -1,72 +1,52 @@
-<!DOCTYPE html>
-<html>
+class Balloon {
+    constructor(x, y, initialRadius = 10) {
+        // 初始化属性（增加半径初始值参数）
+        this.x = x; // 横坐标（数值）
+        this.y = y; // 纵坐标（数值）
+        this.radius = Math.max(initialRadius, 0); // 半径（最小为0，避免负数）
+        this.color = "red"; // 新增：气球默认颜色（可扩展为构造函数参数）
+        this.isInflated = this.radius > 0; // 新增：气球是否处于充气状态
+    }
 
-<head>
-    <style>
-        @keyframes float {
-            0% {
-                transform: translateY(700px);
-            }
+    // 充气方法（增加半径，最大不超过100）
+    inflate(amount = 5) {
+        const newRadius = this.radius + amount;
+        this.radius = Math.min(newRadius, 100); // 限制最大半径为100
+        this.isInflated = this.radius > 0; // 更新充气状态
+    }
 
-            25% {
-                transform: translateY(500px);
-            }
+    // 放气方法（减少半径，最小为0）
+    deflate(amount = 5) {
+        const newRadius = this.radius - amount;
+        this.radius = Math.max(newRadius, 0); // 限制最小半径为0
+        this.isInflated = this.radius > 0; // 更新充气状态
+    }
 
-            50% {
-                transform: translateY(300px);
-            }
+    // 移动气球到指定坐标
+    moveTo(newX, newY) {
+        this.x = newX;
+        this.y = newY;
+    }
 
-            75% {
-                transform: translateY(500px);
-            }
+    // 绘制气球（结合HTML5 Canvas的具体实现示例）
+    draw(canvasContext) {
+        if (!canvasContext || !this.isInflated) return; // 未充气或无画布时不绘制
 
-            100% {
-                transform: translateY(700px);
-            }
-        }
-    </style>
-</head>
+        canvasContext.beginPath();
+        canvasContext.arc(this.x, this.y, this.radius, 0, 2 * Math.PI); // 绘制圆形
+        canvasContext.fillStyle = this.color; // 使用颜色属性
+        canvasContext.fill();
+        canvasContext.stroke();
+        canvasContext.closePath();
+    }
 
-<body>
-    <script>
-        class Balloon {
-            constructor(id, color1, diameter, speed) {
-                this.color = color1;
-                this.diameter = diameter;
-                this.speed = speed;
-                this.id = id;
-            }
-
-            make() {
-                let dv = document.createElement('div');
-                dv.id = 'd' + this.id;
-                dv.style.cssText = `width:${this.diameter}px;height:${this.diameter}px;border - radius:${this.diameter / 2}px;background - color:${this.color};position:absolute;transform:translateY(700px);left:${Math.random() * (window.innerWidth - this.diameter)}px;`;
-                document.body.appendChild(dv);
-            }
-
-            float() {
-                let dv = document.getElementById('d' + this.id);
-                dv.style.animationName = "float";
-                dv.style.animationDuration = (10 / this.speed) + 's';
-                dv.style.animationIterationCount = "infinite";
-                dv.style.animationTimingFunction = "ease - in - out";
-            }
-        }
-
-        // 生成30个颜色鲜亮的气球
-        const colors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pink', 'cyan','magenta', 'lime'];
-        for (let i = 0; i < 30; i++) {
-            let color = colors[Math.floor(Math.random() * colors.length)];
-            let diameter = 50 + Math.random() * 100; // 直径在50 - 150px之间
-            let speed = 0.5 + Math.random(); // 速度在0.5 - 1.5之间
-
-            let b = new Balloon(i, color, diameter, speed);
-            b.make();
-            setTimeout(() => {
-                b.float();
-            }, i * 200); // 每个气球间隔200ms开始漂浮
-        }
-    </script>
-</body>
-
-</html>
+    // 获取气球当前状态（返回对象）
+    getStatus() {
+        return {
+            position: { x: this.x, y: this.y },
+            radius: this.radius,
+            color: this.color,
+            isInflated: this.isInflated
+        };
+    }
+}
