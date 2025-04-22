@@ -1,0 +1,24 @@
+function righttime(d, timeslots) {
+    const dayMap = { 0: 'S', 1: 'M', 2: 'T', 3: 'W', 4: 'R', 5: 'F', 6: 'U' };
+    const dDay = dayMap[d.getDay()];
+    const slots = timeslots.split(',').map(s => s.replace(/\s+/g, ''));
+
+    for (const slot of slots) {
+        const dayPart = slot.match(/^[A - Z]+/)[0];
+        const timePart = slot.replace(/^[A - Z]+/, '').split('-');
+
+        if (dayPart.includes(dDay)) {
+            const [start, end] = timePart;
+            const [sh, sm] = start.split(':').map(Number);
+            const [eh, em] = end.split(':').map(Number);
+            const dTime = d.getHours() * 60 + d.getMinutes();
+            const sTime = sh * 60 + sm;
+            const eTime = eh * 60 + em;
+
+            if (dTime >= sTime && dTime <= eTime) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
