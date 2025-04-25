@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balloon Game</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+       .balloon {
+            position: absolute;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const colors = ["red", "blue", "green", "yellow", "orange", "purple"];
+        const numBalloons = Math.floor(Math.random() * 11) + 10;
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+
+        function createBalloon() {
+            const balloon = document.createElement('div');
+            const diameter = Math.floor(Math.random() * 50) + 50;
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const x = Math.floor(Math.random() * (windowWidth - diameter));
+            const y = windowHeight;
+            const speed = Math.floor(Math.random() * 3) + 1;
+
+            balloon.classList.add('balloon');
+            balloon.style.width = `${diameter}px`;
+            balloon.style.height = `${diameter}px`;
+            balloon.style.backgroundColor = color;
+            balloon.style.left = `${x}px`;
+            balloon.style.bottom = `${y}px`;
+
+            balloon.addEventListener('mouseenter', () => {
+                balloon.style.width = `${diameter * 1.2}px`;
+                balloon.style.height = `${diameter * 1.2}px`;
+            });
+
+            balloon.addEventListener('mouseleave', () => {
+                balloon.style.width = `${diameter}px`;
+                balloon.style.height = `${diameter}px`;
+            });
+
+            document.body.appendChild(balloon);
+
+            function moveBalloon() {
+                const currentY = parseInt(balloon.style.bottom);
+                if (currentY > windowHeight) {
+                    document.body.removeChild(balloon);
+                } else {
+                    balloon.style.bottom = `${currentY - speed}px`;
+                    requestAnimationFrame(moveBalloon);
+                }
+            }
+
+            moveBalloon();
+        }
+
+        for (let i = 0; i < numBalloons; i++) {
+            createBalloon();
+        }
+    </script>
+</body>
+
+</html>
+    
