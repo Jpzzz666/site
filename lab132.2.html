@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+  <input type="file" id="htmlFileInput">
+  <div id="displayDiv"></div>
+
+  <script>
+    document.getElementById('htmlFileInput').addEventListener('change', function (e) {
+      if (e.target.files && e.target.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          const div = document.getElementById('displayDiv');
+          div.innerHTML = event.target.result;
+          document.body.appendChild(div);
+        };
+        reader.readAsText(e.target.files[0]);
+      }
+    });
+  </script>
+
+</body>
+
+</html>
